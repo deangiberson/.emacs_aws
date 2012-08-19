@@ -12,7 +12,8 @@
   (package-refresh-contents))
 
 (setq required-packages '((ruby-mode (1 1))
-			  (inf-ruby (2 1))))
+			  (inf-ruby (2 1))
+			  (magit (0 8 1))))
 
 (dolist (p required-packages)
   (let ((package (car p))
@@ -82,5 +83,7 @@
  )
 
 (defalias 'yes-or-no-p 'y-or-n-p)
+
+(require 'magit)
 
 (server-start)
