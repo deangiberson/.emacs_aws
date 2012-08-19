@@ -2,3 +2,4 @@ elpa
 .emacs.desktop
 backup
 autosave/
+auto-save-list/
