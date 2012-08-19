@@ -8,6 +8,18 @@
      (expand-file-name "~/.emacs.d/elpa/package.el"))
   (package-initialize))
 
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+(setq required-packages '((ruby-mode (1 1))
+			  (inf-ruby (2 1))))
+
+(dolist (p required-packages)
+  (let ((package (car p))
+	(version (cadr p)))
+    (when (not (package-installed-p package version))
+      (package-install package))))
+
 ;;;
 (setq temporary-file-directory (expand-file-name "~/.emacs.d/backup"))
 
@@ -43,7 +55,7 @@
             (ruby-electric-mode t)
             ))
 
-
+(require 'inf-ruby)
 (require 'ansi-color)
 (defun colorize-compilation-buffer ()
   (toggle-read-only)
@@ -69,5 +81,6 @@
  ;; If there is more than one, they won't work right.
  )
 
+(defalias 'yes-or-no-p 'y-or-n-p)
 
 (server-start)
